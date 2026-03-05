@@ -262,7 +262,7 @@ environment {
     // GTK_IM_MODULE "fcitx"
    // QT_IM_MODULE "ibus"
     // https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Sway
-    XMODIFIERS "@im=ibus"
+//    XMODIFIERS "@im=ibus"
 //    QT_IM_MODULES "wayland;ibus"
 }
 // niri 启动时自动运行的程序
@@ -348,12 +348,6 @@ window-rule {
         active-color "#61AFEF"
     }
 }
-window-rule {
-
-    match app-id="variety"
-
-    open-floating true
-}
 
 // 使用 `niri msg layers` 查看命名空间，可在此配置 Waybar 等图层的透明度。
 layer-rule {
@@ -362,11 +356,11 @@ layer-rule {
     //     opacity 0.75
 }
 
-// 将 swaybg 也放置在概览的幕布内。
-//layer-rule {
-//    match namespace="^variety$"
-//    place-within-backdrop true
-//}
+//`` 将 swaybg 也放置在概览的幕布内。
+layer-rule {
+    match namespace="^variety$"
+    place-within-backdrop true
+}
 
 debug {
     honor-xdg-activation-with-invalid-serial
