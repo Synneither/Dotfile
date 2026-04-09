@@ -262,13 +262,13 @@ environment {
     // GTK_IM_MODULE "fcitx"
    // QT_IM_MODULE "ibus"
     // https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Sway
-//    XMODIFIERS "@im=ibus"
+    XMODIFIERS "@im=fcitx"
 //    QT_IM_MODULES "wayland;ibus"
 }
 // niri 启动时自动运行的程序
 spawn-at-startup "niri-switch-daemon"
 //spawn-at-staruup "ibus-daemon -panel" "disable"
-spawn-at-startup "ibus" "start"
+spawn-at-startup "fcitx5" "-d"
 // spawn-at-startup "/usr/bin/v2rayn"
  spawn-at-startup "/usr/bin/waybar"
 spawn-at-startup "/usr/bin/vicinae" "server"
