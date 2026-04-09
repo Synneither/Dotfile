@@ -13,11 +13,15 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-#zinit light Aloxaf/fzf-tab
+zinit light Aloxaf/fzf-tab
 #开启tab上下左右选择补全
 zstyle ':completion:*' menu no
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit -i
+#fzf使用fd
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 # 设置历史记录文件的路径
 HISTFILE=~/.zsh_history
 # 设置在会话（内存）中和历史文件中保存的条数，建议设置得大一些
