@@ -20,8 +20,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 autoload -Uz compinit && compinit -i
 #fzf使用fd
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 # 设置历史记录文件的路径
 HISTFILE=~/.zsh_history
 # 设置在会话（内存）中和历史文件中保存的条数，建议设置得大一些
