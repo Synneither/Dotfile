@@ -2,179 +2,241 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 -- 此文件将被 lazyvim.plugins.config 自动加载
-local map = LazyVim.safe_keymap_set
--- 更好的上下移动
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "向下移动", expr = true, silent = true })
-map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "向下移动", expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "向上移动", expr = true, silent = true })
-map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "向上移动", expr = true, silent = true })
--- 使用 <ctrl> hjkl 键在窗口间移动
-map("n", "<C-h>", "<C-w>h", { desc = "跳转到左侧窗口", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "跳转到下方窗口", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "跳转到上方窗口", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "跳转到右侧窗口", remap = true })
--- 使用 <ctrl> 方向键调整窗口大小
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "增加窗口高度" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "减少窗口高度" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "减少窗口宽度" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "增加窗口宽度" })
--- 移动行
-map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "向下移动行" })
-map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "向上移动行" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "向下移动行" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "向上移动行" })
-map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "向下移动行" })
-map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "向上移动行" })
---  缓冲区操作
-map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "上一个缓冲区" })
-map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "下一个缓冲区" })
-map("n", "[b", "<cmd>bprevious<cr>", { desc = "上一个缓冲区" })
-map("n", "]b", "<cmd>bnext<cr>", { desc = "下一个缓冲区" })
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "切换到其他缓冲区" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "切换到其他缓冲区" })
-map("n", "<leader>bd", function()
-  Snacks.bufdelete()
-end, { desc = "删除缓冲区" })
-map("n", "<leader>bo", function()
-  Snacks.bufdelete.other()
-end, { desc = "删除其他缓冲区" })
-map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "删除缓冲区并关闭窗口" })
---  清除搜索并停止代码片段（按 Esc 键）
-map({ "i", "n", "s" }, "<esc>", function()
-  vim.cmd("noh")
-  LazyVim.cmp.actions.snippet_stop()
-  return "<esc>"
-end, { expr = true, desc = "退出并清除高亮搜索" })
---  清除搜索、更新差异并重绘
---  取自 runtime/lua/_editor.lua
-map(
-  "n",
-  "<leader>ur",
-  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-  { desc = "重绘 / 清除高亮搜索 / 更新差异" }
-)
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "下一个搜索结果" })
-map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "下一个搜索结果" })
-map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "下一个搜索结果" })
-map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "上一个搜索结果" })
-map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "上一个搜索结果" })
-map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "上一个搜索结果" })
--- 添加撤销断点
-map("i", ",", ",<c-g>u")
-map("i", ".", ".<c-g>u")
-map("i", ";", ";<c-g>u")
--- 保存文件
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "保存文件" })
--- 关键字程序
-map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "关键字程序" })
--- 更好的缩进
-map("x", "<", "<gv")
-map("x", ">", ">gv")
--- 注释
-map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "在下方添加注释" })
-map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "在上方添加注释" })
--- Lazy 插件管理器
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy 插件管理器" })
--- 新建文件
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "新建文件" })
--- 位置列表
-map("n", "<leader>xl", function()
-  local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
+--local map = vim.keymap.set
+--  "将空格设置为 leader 键"
+-- "查看 `:help mapleader`"
+-- "注意：必须在插件加载之前发生（否则会使用错误的 leader）"
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+local map = vim.keymap.set
+-- 复用 opt 参数
+-- local opt = { noremap = true, silent = true }
+
+-- jk 代替 esc
+map("i", "jk", "<ESC>", { desc = "返回 Normal模式" })
+
+-- esc 的时候取消搜索高亮
+map("n", "<ESC>", "<cmd>nohlsearch<CR>")
+
+-- NOTE: 代码折叠操作
+map("n", "<leader>cc", "zc", { desc = "[ZC] :折叠代码块" })
+map("n", "<leader>co", "zo", { desc = "[ZO] :展开代码块" })
+
+-- NOTE: 诊断映射
+map("n", "<leader>d[", vim.diagnostic.goto_prev, { desc = "[D]iagnostic 跳转到上一个诊断" })
+map("n", "<leader>d]", vim.diagnostic.goto_next, { desc = "[D]iagnostic 跳转到下一个诊断" })
+map("n", "<leader>de", vim.diagnostic.open_float, { desc = "[D]iagnostic[E]rror :显示诊断错误信息" })
+map("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "[D]iagnostic[L]ist :显示诊断列表" })
+
+-- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
+-- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
+-- is not what someone will guess without a bit more experience.
+--
+-- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+-- or just use <C-\><C-n> to exit terminal mode
+-- >>>>> 终端操作
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "退出 terminal" })
+map("n", "<leader>th", ":sp | terminal<CR>", { desc = "[T]erminl: 水平分屏打开终端" })
+map("n", "<leader>tv", ":vsp | terminal<CR>", { desc = "[T]erminl: 垂直分屏打开终端" })
+map("n", "<leader>tt", ":terminal<CR>", { desc = "[T]erminl: 打开内置终端" })
+
+-- TIP: Disable arrow keys in normal mode
+-- map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+-- map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+-- map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+-- map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+
+-- Keybinds to make split navigation easier.
+--  Use CTRL+<hjkl> to switch between windows
+--
+--  See `:help wincmd` for a list of all window commands
+map("n", "<C-h>", "<C-w><C-h>", { desc = "[W]indow : 移动到左侧窗口" })
+map("n", "<C-l>", "<C-w><C-l>", { desc = "[W]indow : 移动到右侧窗口" })
+map("n", "<C-j>", "<C-w><C-j>", { desc = "[W]indow : 移动到下侧窗口" })
+map("n", "<C-k>", "<C-w><C-k>", { desc = "[W]indow : 移动到上侧窗口" })
+
+-- NOTE: 分屏和窗口
+--
+-- 取消 s 默认功能
+map("n", "s", "")
+-- windows 分屏快捷键
+map("n", "<leader>wv", ":vsp<CR>", { desc = "[W]indow : 垂直分屏" })
+map("n", "<leader>wh", ":sp<CR>", { desc = "[W]indow : 水平分屏" })
+map("n", "<leader>wc", "<C-w>c", { desc = "[W]indow : 关闭当前分屏" })
+map("n", "<leader>wo", "<C-w>o", { desc = "[W]indow : 关闭其他分屏" })
+-- 左右比例控制
+map("n", "<leader>w,", ":vertical resize -20<CR>", { desc = "[W]indow : 减小水平分屏尺寸" })
+map("n", "<leader>w.", ":vertical resize +20<CR>", { desc = "[W]indow : 增大水平分屏尺寸" })
+map("n", "<leader>wj", ":resize -20<CR>", { desc = "[W]indow : 减小垂直分屏尺寸" })
+map("n", "<leader>wk", ":resize +20<CR>", { desc = "[W]indow : 增大垂直分屏尺寸" })
+-- 等比例
+map("n", "<leader>w=", "<C-w>=", { desc = "[W]indow: 等比例窗口尺寸" })
+
+--NOTE: 可视模式
+--
+-- 快速移动行
+map("v", "<A-j>", ":move '>+1<CR>gv-gv", { desc = "快速向下移动行" })
+map("v", "<A-k>", ":move '<-2<CR>gv-gv", { desc = "快速向上移动行" })
+
+--NOTE: 文件 操作
+--
+map("n", "<leader>fq", ":x<CR>", { desc = "[F]ile :保存并退出" })
+map("n", "<leader>fw", ":w<CR>", { desc = "[F]ile :写入文件" })
+
+-- NOTE: buffer操作快捷键
+-- bufferline
+-- 左右Tab切换
+map("n", "<leader>b[", ":BufferLineCyclePrev<CR>", { desc = "[←] :上一个 buffer" })
+map("n", "<leader>b]", ":BufferLineCycleNext<CR>", { desc = "[→] :下一个 buffer" })
+-- 关闭
+--"moll/vim-bbye"
+map("n", "<leader>bx", ":bdelete<CR>", { desc = "[C]lose: 关闭当前 buffer" })
+
+-- NOTE: 插件快捷键映射
+
+-- coderunner
+map("n", "<leader>cr", ":RunCode<CR>", { desc = "[R]unner :通过 coderunner 快捷执行" })
+-- 文件树开关
+map("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "[E] :打开/关闭文件树" })
+-- markdown 预览
+map("n", "<leader>mv", ":MarkdownPreview<CR>", { desc = "pre[V]iew : 打开 meekdown 预览" })
+local pluginKeys = {}
+-- NOTE: telescope 模糊检索工具
+pluginKeys.telescope = function()
+  -- 查看 `:help telescope.builtin` 获取更多内置函数的信息
+  local builtin = require("telescope.builtin") -- 引入 telescope.builtin 模块
+
+  -- 在普通模式下，使用 <leader>sh 快捷键来调用内置的帮助标签查找函数
+  vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[H]elp :搜索帮助信息" })
+
+  -- 在普通模式下，使用 <leader>sk 快捷键来调用内置的键位映射查找函数
+  vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[K]eymaps :搜索快捷键" })
+
+  -- 在普通模式下，使用 <leader>sf 快捷键来调用内置的文件查找函数
+  vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[F]iles :搜索文件" })
+
+  -- 在普通模式下，使用 <leader>st 快捷键来调用内置的 Telescope 选择函数
+  vim.keymap.set("n", "<leader>st", builtin.builtin, { desc = "[T]elescope :搜索telescope指令" })
+
+  -- 在普通模式下，使用 <leader>sw 快捷键来调用内置的字符串查找函数
+  vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[W]ord :查找字符串" })
+
+  -- 在普通模式下，使用 <leader>sg 快捷键来调用内置的实时 grep 函数"
+  vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[G]rep :动态搜索文本内容" })
+
+  -- 在普通模式下，使用 <leader>sd 快捷键来调用内置的诊断查找函数
+  vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[D]iagnostics :查找诊断信息" })
+
+  -- 在普通模式下，使用 <leader>sr 快捷键来调用内置的搜索恢复函数"
+  vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[R]esume :回复最近一次搜索历史" })
+
+  -- 在普通模式下，使用 <leader>s. 快捷键来调用内置的最近文件查找函数
+  vim.keymap.set("n", "<leader>so", builtin.oldfiles, { desc = "[O]ld :搜索最近打开过的文件" })
+
+  -- 在普通模式下，使用 <leader>sb 快捷键来调用内置的缓冲区查找函数
+  vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[B]uffer :快速搜索缓冲区" })
+
+  -- 在普通模式下，使用 <leader><leader> 快捷键来调用内置的缓冲区查找函数
+  vim.keymap.set("n", "<leader>sp", "<CMD>Telescope projects<CR>", { desc = "[P]rojects :搜索打开过的项目" })
+end
+
+-- NOTE:  lsp相关
+pluginKeys.lspconfig = function(event)
+  -- 便于快捷键绑定的复用函数
+  local lspMap = function(keys, func, desc)
+    vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
   end
-end, { desc = "位置列表" })
--- 快速修复列表
-map("n", "<leader>xq", function()
-  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
-end, { desc = "快速修复列表" })
-map("n", "[q", vim.cmd.cprev, { desc = "上一个快速修复" })
-map("n", "]q", vim.cmd.cnext, { desc = "下一个快速修复" })
--- 格式化
-map({ "n", "x" }, "<leader>cf", function()
-  LazyVim.format({ force = true })
-end, { desc = "格式化" })
--- 诊断
-local diagnostic_goto = function(next, severity)
-  return function()
-    vim.diagnostic.jump({
-      count = (next and 1 or -1) * vim.v.count1,
-      severity = severity and vim.diagnostic.severity[severity] or nil,
-      float = true,
+
+  -- 跳转到定义
+  -- ctrl t 可以跳转回去
+  lspMap("<leader>lgd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition :跳转到定义")
+
+  -- 跳转到引用
+  lspMap("<leader>lgr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences :跳转到引用")
+
+  -- 跳转到类型实现处
+  lspMap("<leader>lgi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation :跳转到实现")
+
+  -- 跳转到类型定义处
+  lspMap(
+    "<leader>lgD",
+    require("telescope.builtin").lsp_type_definitions,
+    "Type [D]efinition :跳转到类型定义处"
+  )
+
+  -- 搜索当前文件中的所有符号
+  lspMap(
+    "<leader>ss",
+    require("telescope.builtin").lsp_document_symbols,
+    "[D]ocument [S]ymbols :当前文件的所有符号"
+  )
+
+  -- 检索当前工作空间中的符号
+  lspMap(
+    "<leader>sws",
+    require("telescope.builtin").lsp_dynamic_workspace_symbols,
+    "[W]orkspace [S]ymbols :搜索当前工作空间的所有符号"
+  )
+
+  -- 重命名
+  lspMap("<leader>lrn", vim.lsp.buf.rename, "[R]e[n]ame :重命名")
+
+  -- 自动代码操作
+  lspMap("<leader>lca", vim.lsp.buf.code_action, "[C]ode [A]ction :自动代码操作")
+
+  -- 查看悬停文档
+  lspMap("<leader>lh", vim.lsp.buf.hover, "[H]over Documentation :查看悬停")
+
+  -- WARN: This is not Goto Definition, this is Goto Declaration.
+  --  For example, in C this would take you to the header.
+  -- 跳转到声明处 , 例如头文件
+  lspMap("<leader>lgD", vim.lsp.buf.declaration, "[G]oto [D]eclaration :跳转到声明(如头文件)")
+
+  -- The following two autocommands are used to highlight references of the
+  -- word under your cursor when your cursor rests there for a little while.
+  --    See `:help CursorHold` for information about when this is executed
+  --
+  -- 确保当前 LSP 支持文档高亮功能，然后创建相应的 autocmd 以在悬停时高亮引用
+  local client = vim.lsp.get_client_by_id(event.data.client_id)
+  if client and client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+      buffer = event.buf,
+      callback = vim.lsp.buf.document_highlight,
+    })
+
+    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+      buffer = event.buf,
+      callback = vim.lsp.buf.clear_references,
     })
   end
 end
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "行诊断" })
-map("n", "]d", diagnostic_goto(true), { desc = "下一个诊断" })
-map("n", "[d", diagnostic_goto(false), { desc = "上一个诊断" })
-map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "下一个错误" })
-map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "上一个错误" })
-map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "下一个警告" })
-map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "上一个警告" })
--- stylua: ignore start
--- 切换选项
-LazyVim.format.snacks_toggle():map("<leader>uf")
-LazyVim.format.snacks_toggle(true):map("<leader>uF")
-Snacks.toggle.option("spell", { name = "拼写检查" }):map("<leader>us")
-Snacks.toggle.option("wrap", { name = "自动换行" }):map("<leader>uw")
-Snacks.toggle.option("relativenumber", { name = "相对行号" }):map("<leader>uL")
-Snacks.toggle.diagnostics():map("<leader>ud")
-Snacks.toggle.line_number():map("<leader>ul")
-Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = "隐藏级别" }):map("<leader>uc")
-Snacks.toggle.option("showtabline", { off = 0, on = vim.o.showtabline > 0 and vim.o.showtabline or 2, name = "标签栏" }):map("<leader>uA")
-Snacks.toggle.treesitter():map("<leader>uT")
-Snacks.toggle.option("background", { off = "light", on = "dark" , name = "深色背景" }):map("<leader>ub")
-Snacks.toggle.dim():map("<leader>uD")
-Snacks.toggle.animate():map("<leader>ua")
-Snacks.toggle.indent():map("<leader>ug")
-Snacks.toggle.scroll():map("<leader>uS")
-Snacks.toggle.profiler():map("<leader>dpp")
-Snacks.toggle.profiler_highlights():map("<leader>dph")
-if vim.lsp.inlay_hint then
-Snacks.toggle.inlay_hints():map("<leader>uh")
-end
--- lazygit
-if vim.fn.executable("lazygit") == 1 then
-map("n", "<leader>gg", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (根目录)" })
-map("n", "<leader>gG", function() Snacks.lazygit() end, { desc = "Lazygit (当前目录)" })
-end
-map("n", "<leader>gL", function() Snacks.picker.git_log() end, { desc = "Git 日志 (当前目录)" })
-map("n", "<leader>gb", function() Snacks.picker.git_log_line() end, { desc = "Git 行级提交记录" })
-map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git 当前文件历史" })
-map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = LazyVim.root.git() }) end, { desc = "Git 日志" })
-map({ "n", "x" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git 浏览 (打开)" })
-map({"n", "x" }, "<leader>gY", function()
-Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
-end, { desc = "Git 浏览 (复制)" })
--- 退出
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "退出所有" })
--- 光标下的高亮
-map("n", "<leader>ui", vim.show_pos, { desc = "检查位置" })
-map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "检查语法树" })
--- LazyVim 更新日志
-map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim 更新日志" })
--- 浮动终端
-map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "终端 (当前目录)" })
-map("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "终端 (根目录)" })
-map({"n","t"}, "<c-/>",function() Snacks.terminal.focus(nil, { cwd = LazyVim.root() }) end, { desc = "终端 (根目录)" })
-map({"n","t"}, "<c-_>",function() Snacks.terminal.focus(nil, { cwd = LazyVim.root() }) end, { desc = "which_key_ignore" })
--- 窗口操作
-map("n", "<leader>-", "<C-W>s", { desc = "下方分割窗口", remap = true })
-map("n", "<leader>|", "<C-W>v", { desc = "右侧分割窗口", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "删除窗口", remap = true })
-Snacks.toggle.zoom():map("<leader>wm"):map("<leader>uZ")
-Snacks.toggle.zen():map("<leader>uz")
--- 标签页操作
-map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "最后一个标签页" })
-map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "关闭其他标签页" })
-map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "第一个标签页" })
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "新建标签页" })
-map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "下一个标签页" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "关闭标签页" })
-map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "上一个标签页" })
--- Lua 运行
-map({"n", "x"}, "<localleader>r", function() Snacks.debug.run() end, { desc = "运行 Lua", ft = "lua" })
+
+-- NOTE: 文件树列表快捷键
+pluginKeys.nvimTreeList = {
+  -- 打开文件或文件夹
+  { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
+  -- 分屏打开文件
+  { key = "v", action = "vsplit", desc = "垂直分屏打开文件" },
+  { key = "h", action = "split" },
+  -- 显示隐藏文件
+  { key = "i", action = "toggle_custom" }, -- 对应 filters 中的 custom (node_modules)
+  { key = ".", action = "toggle_dotfiles" }, -- Hide (dotfiles)
+  -- 文件操作
+  -- 刷新文件树的显示
+  { key = "<F5>", action = "refresh" },
+  { key = "a", action = "create" },
+  { key = "d", action = "remove" },
+  { key = "r", action = "rename" },
+  { key = "x", action = "cut" },
+  { key = "c", action = "copy" },
+  { key = "p", action = "paste" },
+  -- 使用系统默认软件打开文件
+  { key = "s", action = "system_open" },
+}
+
+--NOTE: markdown 粘贴图片
+pluginKeys.imgClip = {
+  { "<leader>mp", "<cmd>PasteImage<cr>", desc = "[P]aste :粘贴图片到 markdown " },
+}
+return pluginKeys
