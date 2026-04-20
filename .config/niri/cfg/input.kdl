@@ -1,0 +1,30 @@
+// ────────────── Input Configuration ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+        // 在启动时启用 NumLock。省略此设置将禁用它。
+        numlock
+    }
+
+    touchpad {
+        tap
+        //
+        scroll-method "two-finger"
+    }
+
+    mouse {
+        // 设置鼠标移动速度，范围从 -1（慢）到 1（快）
+        accel-speed 1
+    }
+
+    focus-follows-mouse // Automatically focus windows under the mouse pointer
+    workspace-auto-back-and-forth // Enable workspace back & forth switching
+    // niri 默认将电源按钮映射为睡眠。此处禁用以使用关机功能。
+    // 切换修饰键：正常情况使用 Super，在嵌套会话（如虚拟机）中使用 Alt。
+    mod-key "Super"
+    mod-key-nested "Alt"
+}
+

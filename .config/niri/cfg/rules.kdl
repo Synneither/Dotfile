@@ -1,0 +1,48 @@
+window-rule {
+    geometry-corner-radius 20
+    clip-to-geometry true
+    border {
+        // off
+        on
+        width 3
+        active-gradient from="#bd93f9" to="#94b9fa" angle=135
+        //inactive-color "#505050"
+        urgent-color "#9b0000"
+        // active-gradient from="#80c8ff" to="#bbddff" angle=45
+         inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        // urgent-gradient from="#800" to="#a33" angle=45
+    }
+
+    focus-ring{
+        off
+    }
+    // opacity 0.75
+}
+window-rule {
+  //  open-on-output "eDP-1"
+    match app-id=r#"chrome"#
+    default-column-width { proportion 0.8; }
+}
+window-rule {
+        match app-id="steam"
+        exclude title=r#"^[Ss]team$"#
+        open-floating true
+    }
+
+    window-rule {
+       match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+       default-floating-position x=10 y=10 relative-to="bottom-right"
+       open-focused false
+    }
+
+    layer-rule {
+        match namespace="^noctalia-wallpaper*"
+        place-within-backdrop true
+    }
+// 使用 `niri msg layers` 查看命名空间，可在此配置 Waybar 等图层的透明度。
+layer-rule {
+    match namespace="^quickshell-overview$"
+    place-within-backdrop true
+    //     opacity 0.75
+}
+

@@ -1,0 +1,32 @@
+layout {
+    // 窗口间隙（逻辑像素）
+    gaps 2
+    background-color "transparent"
+    // 有多个窗口时，未最大化的列不自动居中。
+    center-focused-column "never"
+    // 只有一个列时自动居中。
+    always-center-single-column
+   // Mod+R 切换的预设列宽。
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        // 也可设置固定的像素宽度（受缩放影响）。
+        // fixed 1920
+    }
+
+    preset-window-heights {
+        proportion 0.5
+        proportion 0.8
+        proportion 1.0
+    }
+    // 关闭焦点环
+    focus-ring {
+        // off
+    }
+
+    // 关闭边框
+    border {
+     //   off
+    }
+}
