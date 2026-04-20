@@ -27,3 +27,10 @@
     hotkey-overlay {
        skip-at-startup
     }
+//    blur {
+//    // off
+//        passes 3
+//        offset 3
+//        noise 0.02
+//        saturation 1.5
+//}

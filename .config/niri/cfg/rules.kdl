@@ -19,7 +19,6 @@ window-rule {
     // opacity 0.75
 }
 window-rule {
-  //  open-on-output "eDP-1"
     match app-id=r#"chrome"#
     default-column-width { proportion 0.8; }
 }
@@ -34,15 +33,8 @@ window-rule {
        default-floating-position x=10 y=10 relative-to="bottom-right"
        open-focused false
     }
-
-    layer-rule {
-        match namespace="^noctalia-wallpaper*"
-        place-within-backdrop true
-    }
-// 使用 `niri msg layers` 查看命名空间，可在此配置 Waybar 等图层的透明度。
+// Set the overview wallpaper on the backdrop.
 layer-rule {
-    match namespace="^quickshell-overview$"
-    place-within-backdrop true
-    //     opacity 0.75
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
 }
-

@@ -53,7 +53,7 @@ theme = Catppuccin Frappe
 window-decoration = none
 
 #设置透明度
-#background-opacity=0.8
+background-opacity=1.1
 
 #设置字体和字体大小
 

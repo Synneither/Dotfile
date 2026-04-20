@@ -20,7 +20,7 @@ input {
         accel-speed 1
     }
 
-    focus-follows-mouse // Automatically focus windows under the mouse pointer
+//    focus-follows-mouse // Automatically focus windows under the mouse pointer
     workspace-auto-back-and-forth // Enable workspace back & forth switching
     // niri 默认将电源按钮映射为睡眠。此处禁用以使用关机功能。
     // 切换修饰键：正常情况使用 Super，在嵌套会话（如虚拟机）中使用 Alt。

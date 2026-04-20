@@ -1,7 +1,7 @@
 layout {
     // 窗口间隙（逻辑像素）
     gaps 2
-    background-color "transparent"
+//    background-color "transparent"
     // 有多个窗口时，未最大化的列不自动居中。
     center-focused-column "never"
     // 只有一个列时自动居中。
