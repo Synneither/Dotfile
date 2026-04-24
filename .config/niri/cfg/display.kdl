@@ -3,7 +3,7 @@
 // You will have to remove "/-" and edit it before it takes effect.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 
-output "eDP-2" {
+output "eDP-1" {
     // 取消注释以禁用此显示器。
   //``  off
 
