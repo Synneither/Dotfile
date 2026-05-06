@@ -18,6 +18,15 @@ zinit light Aloxaf/fzf-tab
 zstyle ':completion:*' menu no
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 autoload -Uz compinit && compinit -i
+# Uncomment the following line if pasting URLs and other text is messed up.
+DISABLE_MAGIC_FUNCTIONS="true"
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+# Use custom `less` colors for `man` pages.
+export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
+export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
 #fzf使用fd
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # 设置历史记录文件的路径

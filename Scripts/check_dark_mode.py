@@ -60,10 +60,10 @@ def main():
 
     # 输出结果
     if is_dark:
-        print("true")
+        print("深色模式")
         sys.exit(0)
     else:
-        print("false")
+        print("浅色模式")
         sys.exit(1)
 
 if __name__ == '__main__':
