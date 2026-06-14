@@ -28,12 +28,16 @@ window-rule {
         open-floating true
     }
 
-    window-rule {
+window-rule {
        match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
        default-floating-position x=10 y=10 relative-to="bottom-right"
        open-focused false
     }
-// Set the overview wallpaper on the backdrop.
+window-rule{
+  match app-id="flameshot"
+  open-floating true
+}
+    // Set the overview wallpaper on the backdrop.
 layer-rule {
   match namespace="^noctalia-overview*"
   place-within-backdrop true

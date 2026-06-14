@@ -151,10 +151,10 @@ binds {
 
     // 截图
     f2 hotkey-overlay-title="交互式区域截图 (grim+slurp+satty)" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "plugin:screen-toolkit" "ocr"; }
-    f1 hotkey-overlay-title="使用 Flameshot 截图" { spawn "flameshot" "gui"; }
-    Print hotkey-overlay-title="全屏截图 (不保存)" { screenshot show-pointer=false; }
-    Ctrl+Print hotkey-overlay-title="全屏截图并保存到磁盘" { screenshot-screen write-to-disk=true; }
-    Alt+Print hotkey-overlay-title="当前窗口截图并保存到磁盘" { screenshot-window write-to-disk=true; }
+    Print hotkey-overlay-title="使用 satty 截图" { spawn-sh "grim -t ppm - | /usr/bin/satty --filename - --fullscreen";}
+    //Print hotkey-overlay-title="全屏截图 (不保存)" { screenshot show-pointer=false; }
+    //Ctrl+Print hotkey-overlay-title="全屏截图并保存到磁盘" { screenshot-screen write-to-disk=true; }
+    //Alt+Print hotkey-overlay-title="当前窗口截图并保存到磁盘" { screenshot-window write-to-disk=true; }
 
     // 为虚拟机软件临时禁用全局快捷键。allow-inhibiting=false 确保此快捷键本身不被抑制。
     Mod+Escape hotkey-overlay-title="切换全局快捷键抑制状态" allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }

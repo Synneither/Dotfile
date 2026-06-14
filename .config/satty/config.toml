@@ -1,0 +1,9 @@
+[general]
+copy-command = "wl-Copy" 
+output-filename = "~/Pictures/Screenshots/%YXm¥%d-%H:¥%M:%S.png" 
+early-exit = true 
+action-on-enter = "save-to-file" 
+no-window-decoration = true 
+[font] 
+family = "LXGW WenKai GB Screen" 
+style = "Regular" 
