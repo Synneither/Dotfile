@@ -1,6 +1,6 @@
 layout {
     // 窗口间隙（逻辑像素）
-    gaps 2
+    gaps 1
 //    background-color "transparent"
     // 有多个窗口时，未最大化的列不自动居中。
     center-focused-column "never"
@@ -10,7 +10,7 @@ layout {
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
-        proportion 0.66667
+        proportion 0.98
         // 也可设置固定的像素宽度（受缩放影响）。
         // fixed 1920
     }
@@ -27,6 +27,7 @@ layout {
 
     // 关闭边框
     border {
+      
      //   off
     }
 }
