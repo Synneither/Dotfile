@@ -1,16 +1,1 @@
 * 
-!.gitignore
-!.zshrc
-!.config/ghostty/**
-!.config/helix/**
-!.config/ibus/rime/**
-!.config/niri/**
-!.config/nvim/**
-!.config/yazi/**
-!.local/
-!.local/share/
-!.local/share/fcitx5/
-!.local/share/fcitx5/rime/**
-!.local/share/fcitx5/theme/**
-!Scripts/
-!Scripts/**

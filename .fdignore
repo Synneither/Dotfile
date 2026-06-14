@@ -1,0 +1,25 @@
+# .fdignore —— 只影响 fd/fzf 的搜索视图，不影响 Git
+.git
+node_modules/
+dist/
+build/
+target/
+__pycache__/
+*.pyc
+.wine/
+.cache/
+.cargo/
+.deno/
+.dotnet/
+.gradle/
+.m2/
+.mozilla/
+.node/
+.npm/
+.nuget/
+.nv/
+.pki/
+.rustup/
+.vscode/
+.vscode-shared/
+.zen/

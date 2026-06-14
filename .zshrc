@@ -28,7 +28,7 @@ COMPLETION_WAITING_DOTS="true"
 export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
 export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
 #fzf使用fd
-export FZF_DEFAULT_COMMAND='fd --type f --type d --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type f --type d --hidden --follow --no-ignore-vcs'
 # 设置历史记录文件的路径
 HISTFILE=~/.zsh_history
 # 设置在会话（内存）中和历史文件中保存的条数，建议设置得大一些
