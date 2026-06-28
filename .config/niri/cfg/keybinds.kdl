@@ -6,7 +6,7 @@ binds {
     Mod+Return hotkey-overlay-title="打开终端" { spawn "ghostty"; }
    // Mod+A hotkey-overlay-title="运行应用程序" { spawn "/usr/bin/fuzzel"; }
     alt+space hotkey-overlay-title="运行应用程序" {spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
-    Mod+X hotkey-overlay-title="打开浏览器: Chrome" { spawn "/usr/bin/google-chrome-canary"; }
+    Mod+X hotkey-overlay-title="打开浏览器: Chrome" { spawn "/usr/bin/google-chrome-stable"; }
     // Mod+D hotkey-overlay-title="同步切换 OBS 和 MPV 状态" { spawn "/usr/bin/touch" "/tmp/obs_mpv_toggle_pause"; }
     Mod+K hotkey-overlay-title="打开屏幕按键显示" { spawn "/usr/bin/wshowkeys" "-a" "right" "-a" "bottom" "-F" "ComicShannsMono Nerd Font 30"; }
     Mod+Shift+K hotkey-overlay-title="关闭屏幕按键显示" { spawn "/usr/bin/killall" "wshowkeys"; }
@@ -151,7 +151,7 @@ binds {
 
     // 截图
     f2 hotkey-overlay-title="交互式区域截图 (grim+slurp+satty)" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "plugin:screen-toolkit" "ocr"; }
-    Print hotkey-overlay-title="使用 satty 截图" { spawn-sh "grim -t ppm - | /usr/bin/satty --filename - --fullscreen";}
+    f1 hotkey-overlay-title="使用 satty 截图" { spawn-sh "grim -t ppm - | /usr/bin/satty --filename - --fullscreen";}
     //Print hotkey-overlay-title="全屏截图 (不保存)" { screenshot show-pointer=false; }
     //Ctrl+Print hotkey-overlay-title="全屏截图并保存到磁盘" { screenshot-screen write-to-disk=true; }
     //Alt+Print hotkey-overlay-title="当前窗口截图并保存到磁盘" { screenshot-window write-to-disk=true; }

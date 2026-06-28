@@ -57,3 +57,8 @@ function y() {
 	rm -f -- "$tmp"
 }
 . "/home/synneither/.deno/env"
+export PATH="$PATH:$HOME/.local/bin"
+
+
+# opencode
+export PATH=/home/synneither/.opencode/bin:$PATH

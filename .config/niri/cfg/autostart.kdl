@@ -1,9 +1,10 @@
 // ────────────── Startup Applications ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
-spawn-sh-at-startup "qs -c noctalia-shell"
+spawn-sh-at-startup "while true; do qs -c noctalia-shell; sleep 1; done"
 spawn-at-startup "niri-switch-daemon"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "/usr/bin/waybar"
 spawn-at-startup "/usr/bin/vicinae" "server"
 spawn-at-startup "~/.cargo/bin/soteria"
 spawn-at-startup "/usr/bin/hyprlock"
+spawn-at-startup "~/AppImages/qq.appimage"

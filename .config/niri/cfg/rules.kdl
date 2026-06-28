@@ -34,7 +34,11 @@ window-rule {
        open-focused false
     }
 window-rule{
-  match app-id="flameshot"
+  match app-id="grim"
+  open-floating true
+}
+window-rule{
+  match app-id="satty"
   open-floating true
 }
     // Set the overview wallpaper on the backdrop.

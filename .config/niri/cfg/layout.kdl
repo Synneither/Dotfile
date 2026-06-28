@@ -10,7 +10,7 @@ layout {
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
-        proportion 0.98
+        proportion 1.0
         // 也可设置固定的像素宽度（受缩放影响）。
         // fixed 1920
     }
