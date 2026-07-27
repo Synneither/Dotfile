@@ -62,3 +62,6 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # opencode
 export PATH=/home/synneither/.opencode/bin:$PATH
+
+# WeRead skill API Key
+export WEREAD_API_KEY=wrk-nHqf9XOcTtqL1ycrfct7_wAA

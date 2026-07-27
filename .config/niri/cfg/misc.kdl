@@ -16,7 +16,7 @@
 
     cursor {
         xcursor-theme "Bibata-Modern-Ice"
-        xcursor-size 20   
+        xcursor-size 20
       }
 
     debug {
@@ -27,10 +27,10 @@
     hotkey-overlay {
        skip-at-startup
     }
-//    blur {
-//    // off
-//        passes 3
-//        offset 3
-//        noise 0.02
-//        saturation 1.5
-//}
+
+    blur {
+        passes 3
+        offset 3
+        noise 0.02
+        saturation 1.5
+    }

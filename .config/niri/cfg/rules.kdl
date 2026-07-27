@@ -61,3 +61,19 @@ layer-rule {
 //    xray false
 //  }
 //}
+
+// 终端模糊
+window-rule {
+  match app-id="^ghostty$|^Alacritty$"
+  background-effect {
+    blur true
+  }
+}
+
+// Noctalia 层模糊
+layer-rule {
+  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+  background-effect {
+    xray false
+  }
+}

@@ -27,7 +27,15 @@ layout {
 
     // 关闭边框
     border {
-      
+
      //   off
+    }
+
+    shadow {
+        softness 30
+        spread 5
+        offset x=0 y=5
+        draw-behind-window true
+        color "#00000070"
     }
 }
