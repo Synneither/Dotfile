@@ -1,6 +1,6 @@
 layout {
     // 窗口间隙（逻辑像素）
-    gaps 1
+    gaps 2 
 //    background-color "transparent"
     // 有多个窗口时，未最大化的列不自动居中。
     center-focused-column "never"
@@ -17,25 +17,14 @@ layout {
 
     preset-window-heights {
         proportion 0.5
-        proportion 0.8
+        proportion 0.6
         proportion 1.0
     }
     // 关闭焦点环
     focus-ring {
-        // off
     }
 
-    // 关闭边框
     border {
-
-     //   off
     }
 
-    shadow {
-        softness 30
-        spread 5
-        offset x=0 y=5
-        draw-behind-window true
-        color "#00000070"
-    }
 }

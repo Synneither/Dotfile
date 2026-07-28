@@ -1,36 +1,30 @@
-    prefer-no-csd
+// 偏好不启用客户端装饰（CSD）——让支持 SSD 的应用由 niri 绘制标题栏
+// 如果应用只支持 CSD（如 GTK4 某些应用），仍会使用自身标题栏
+prefer-no-csd
     // 截图保存路径。设为 null 则不保存到磁盘。
     screenshot-path "~/Pictures/ScreenShot/%Y-%m-%d %H-%M-%S.png"
-
     environment {
-        https_proxy "http://127.0.0.1:7890"
-        http_proxy "http://127.0.0.1:7890"
-        XMODIFIERS "@im=fcitx"
-        ELECTRON_OZONE_PLATFORM_HINT "auto"
-        //QT_QPA_PLATFORM "wayland"
-        //QT_QPA_PLATFORMTHEME "gtk3"
-        QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-        XDG_CURRENT_DESKTOP "niri"
+        https_proxy "http://127.0.0.1:7890"    // 代理地址
+        http_proxy "http://127.0.0.1:7890"     // 代理地址
+        XMODIFIERS "@im=fcitx"                 // 输入法（fcitx）
+        ELECTRON_OZONE_PLATFORM_HINT "auto"     // Electron 在 Wayland 下启用 Ozone
+        //QT_QPA_PLATFORM "wayland"              // Qt 使用 Wayland 后端
+        //QT_QPA_PLATFORMTHEME "gtk3"            // Qt 使用 GTK 主题风格
+        QT_WAYLAND_DISABLE_WINDOWDECORATION "1" // Qt 应用隐藏窗口装饰
+        XDG_CURRENT_DESKTOP "niri"              // 设置当前桌面环境为 niri
         //XDG_SESSION_TYPE "wayland"
     }
 
     cursor {
-        xcursor-theme "Bibata-Modern-Ice"
-        xcursor-size 20
+        xcursor-theme "Bibata-Modern-Ice"    // 鼠标光标主题
+        xcursor-size 20                       // 鼠标光标大小
       }
 
     debug {
-        // Allows notification actions and window activation from Noctalia.
+        // 允许从 Noctalia 发送的通知激活和窗口激活请求（即使 serial 无效也放行）
         honor-xdg-activation-with-invalid-serial
     }
 
     hotkey-overlay {
-       skip-at-startup
-    }
-
-    blur {
-        passes 3
-        offset 3
-        noise 0.02
-        saturation 1.5
+       skip-at-startup                        // 启动时不显示快捷键面板
     }
