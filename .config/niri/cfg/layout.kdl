@@ -1,6 +1,6 @@
 layout {
     // 窗口间隙（逻辑像素）
-    gaps 2 
+    gaps 2
 //    background-color "transparent"
     // 有多个窗口时，未最大化的列不自动居中。
     center-focused-column "never"
@@ -27,4 +27,13 @@ layout {
     border {
     }
 
+}
+
+// ===== Noctalia v5: 模糊概览壁纸（Option 1）=====
+// 将 Noctalia 的壁纸模糊层放入 niri 的 overview backdrop 中，
+// 使概览模式下显示模糊着色的壁纸背景。
+// 对应 Noctalia 配置 [niri/backdrop] 已启用（settings.json 中 wallpaper.overviewEnabled=true）。
+layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
 }

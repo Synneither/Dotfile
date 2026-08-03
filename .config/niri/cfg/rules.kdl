@@ -12,15 +12,46 @@ blur {
 window-rule{
   geometry-corner-radius 20
   clip-to-geometry true
-  opacity 0.90
+  opacity 0.95
    background-effect {
      blur true
 }
 }
 
+// ===== Noctalia v5 设置窗口（浮动）=====
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+  open-floating true
+  default-column-width { fixed 1080; }
+  default-window-height { fixed 920; }
+}
+
+// ===== Noctalia v5 layer 规则（模糊）=====
+// 关闭 bar/通知/dock/面板/OSD 的 xray，使模糊更真实
+layer-rule {
+  match namespace="^noctalia-(bar-[^ \" ]+|notification|dock|panel|attached-panel|osd)$"
+  background-effect {
+    xray false
+  }
+}
+
+// Noctalia 窗口切换器启用模糊
+layer-rule {
+  match namespace="noctalia-window-switcher"
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
 window-rule{
-  match app-id="com.mitchellh.ghostty"
+  match app-id="com.mitchellh.ghostty||obsidian"
   draw-border-with-background false
+}
+
+window-rule{
+  match title="PIP"
+  open-floating true
 }
 
 

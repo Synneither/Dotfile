@@ -5,21 +5,26 @@ binds {
     // Mod-Shift-/ 显示重要的热键列表（通常与 Mod-? 键位相同）。
     Mod+Shift+Slash hotkey-overlay-title="显示所有热键" { show-hotkey-overlay; }
     // Mod+L hotkey-overlay-title="锁定屏幕: swaylock" { spawn "/usr/bin/swaylock" "-f" "-i" "$HOME/.dotfiles/sway/.config/sway/lock.png"; }
-    Mod+Return hotkey-overlay-title="打开终端" { spawn "ghostty"; }
+    Mod+Return hotkey-overlay-title="打开终端" { spawn-sh "ghostty"; }
    // Mod+A hotkey-overlay-title="运行应用程序" { spawn "/usr/bin/fuzzel"; }
-    alt+space hotkey-overlay-title="运行应用程序" {spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    // ===== Noctalia v5 IPC 绑定 =====
+    alt+space hotkey-overlay-title="Noctalia 启动器" {spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+S hotkey-overlay-title="Noctalia 控制中心" { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Comma hotkey-overlay-title="Noctalia 设置" { spawn-sh "noctalia msg settings-toggle"; }
+    Alt+Tab hotkey-overlay-title="Noctalia 窗口切换器" { spawn-sh "noctalia msg window-switcher"; }
+    // 注: niri 内置窗口切换器 (Mod+Tab 概览) 也值得一试，看更喜欢哪个
     Mod+X hotkey-overlay-title="打开浏览器: Chrome" { spawn "/usr/bin/google-chrome-stable"; }
     // Mod+D hotkey-overlay-title="同步切换 OBS 和 MPV 状态" { spawn "/usr/bin/touch" "/tmp/obs_mpv_toggle_pause"; }
     Mod+K hotkey-overlay-title="打开屏幕按键显示" { spawn "/usr/bin/wshowkeys" "-a" "right" "-a" "bottom" "-F" "ComicShannsMono Nerd Font 30"; }
     Mod+Shift+K hotkey-overlay-title="关闭屏幕按键显示" { spawn "/usr/bin/killall" "wshowkeys"; }
     // Mod+Shift+C hotkey-overlay-title="重启 Waybar" { spawn-sh "pkill waybar && waybar"; }
     Ctrl+grave hotkey-overlay-title="GoldenDict 翻译" {spawn "python" "/home/synneither/Scripts/goldendict_translate.py";}
-    // 音量控制
-    XF86AudioRaiseVolume hotkey-overlay-title="增大音量" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"; }
-    XF86AudioLowerVolume hotkey-overlay-title="降低音量" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"; }
-    XF86AudioMute hotkey-overlay-title="静音/取消静音" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
-    XF86MonBrightnessUp hotkey-overlay-title="增加亮度" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown hotkey-overlay-title="降低亮度" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    // ===== Noctalia v5 音频/亮度控制 =====
+    XF86AudioRaiseVolume hotkey-overlay-title="增大音量" { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume hotkey-overlay-title="降低音量" { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute hotkey-overlay-title="静音/取消静音" { spawn-sh "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp hotkey-overlay-title="增加亮度" { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown hotkey-overlay-title="降低亮度" { spawn-sh "noctalia msg brightness-down"; }
 
     // ======== 窗口管理 ========
     // 开关概览视图
@@ -155,7 +160,7 @@ binds {
     Mod+Space hotkey-overlay-title="在浮动与平铺窗口间切换焦点" { switch-focus-between-floating-and-tiling; }
 
     // ======== 截图工具 ========
-    f2 hotkey-overlay-title="交互式区域截图 (grim+slurp+satty)" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "plugin:screen-toolkit" "ocr"; }
+    f2 hotkey-overlay-title="交互式区域截图 (Noctalia)" { spawn-sh "noctalia msg screenshot-region"; }
     f1 hotkey-overlay-title="使用 satty 截图" { spawn-sh "grim -t ppm - | /usr/bin/satty --filename - --fullscreen";}
     //Print hotkey-overlay-title="全屏截图 (不保存)" { screenshot show-pointer=false; }
     //Ctrl+Print hotkey-overlay-title="全屏截图并保存到磁盘" { screenshot-screen write-to-disk=true; }

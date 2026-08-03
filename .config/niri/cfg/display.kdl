@@ -29,7 +29,7 @@ output "eDP-1" {
 output "DP-1" {
     mode "1920x1080"
     transform "normal"
-  //  focus-at-startup
+    focus-at-startup
     // 外接 1080p 无缩放；可在 HiDPI 场景下按需调整
     // scale 1
 }
