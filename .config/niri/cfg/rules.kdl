@@ -31,6 +31,11 @@ window-rule{
 }
 
 window-rule{
+  match title="设置 - Obsidian_note"
+  open-floating true
+}
+
+window-rule{
   match app-id="com.mitchellh.ghostty||obsidian"
   draw-border-with-background false
 }

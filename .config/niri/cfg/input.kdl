@@ -17,7 +17,7 @@ input {
 
     mouse {
         // 设置鼠标移动速度，范围从 -1（慢）到 1（快）
-        accel-speed 1
+        accel-speed 0
     }
 
 //    focus-follows-mouse // Automatically focus windows under the mouse pointer

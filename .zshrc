@@ -65,3 +65,9 @@ export PATH=/home/synneither/.opencode/bin:$PATH
 
 # WeRead skill API Key
 export WEREAD_API_KEY=wrk-nHqf9XOcTtqL1ycrfct7_wAA
+
+# QODERCN_DISPATCHER_PATH v1
+path=("$HOME/.qoder-cn/entry" ${path:#"$HOME/.qoder-cn/entry"})
+export PATH
+# END QODERCN_DISPATCHER_PATH v1
+export PATH="$(npm prefix -g)/bin:$PATH"

@@ -6,6 +6,7 @@ include "./cfg/autostart.kdl"
 include "./cfg/input.kdl"
 include "./cfg/layout.kdl"
 include "./cfg/rules.kdl"
-include "./noctalia.kdl"
 
     // #"Applications"
+
+include "noctalia.kdl"
